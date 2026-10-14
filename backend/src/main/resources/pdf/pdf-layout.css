@@ -1,0 +1,64 @@
+/* Source unique de style : utilisée par l'aperçu React ET par le PDF Java (OpenHTMLToPDF). */
+
+.piece-header-first,
+.piece-header-next,
+.piece-footer {
+  font-family: Helvetica, Arial, sans-serif;
+  color: #1a1a1a;
+}
+
+/* ---------- En-tête page 1 (cartouche) ---------- */
+.piece-header-first {
+  border: 1px solid #222;
+  font-size: 9pt;
+}
+.piece-header-first table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.piece-header-first td { border: 1px solid #222; padding: 6px 8px; vertical-align: middle; }
+.piece-header-first .cell-service { width: 28%; text-align: center; font-size: 7.5pt; line-height: 1.35; }
+.piece-header-first .logo { font-weight: bold; font-size: 13pt; letter-spacing: 0.5px; color: #0b2a6f; }
+.piece-header-first .logo small { display: block; font-size: 6.5pt; font-weight: normal; letter-spacing: 3px; }
+.piece-header-first .service-nom { font-weight: bold; margin-top: 6px; }
+.piece-header-first .type-piece { text-align: center; font-weight: bold; font-size: 10pt; letter-spacing: 0.5px; }
+.piece-header-first .titre { text-align: center; font-size: 15pt; font-weight: bold; line-height: 1.25; padding: 14px 10px; }
+.piece-header-first .meta td { background: #f2f2f2; font-size: 8pt; }
+.piece-header-first .meta .label { color: #444; }
+.piece-header-first .meta .value { font-weight: bold; }
+.piece-header-first .affaire td,
+.piece-header-first .infraction td { background: #f2f2f2; font-size: 8pt; }
+.piece-header-first .infraction .value { font-weight: bold; }
+
+/* ---------- En-tête pages suivantes (rappel simplifié) ---------- */
+.piece-header-next {
+  border: 1px solid #222;
+  background: #f2f2f2;
+  font-size: 8pt;
+  padding: 5px 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.piece-header-next table { width: 100%; border-collapse: collapse; }
+.piece-header-next td { padding: 0 4px; vertical-align: middle; }
+.piece-header-next .proc { font-weight: bold; white-space: nowrap; }
+.piece-header-next .type { text-align: center; }
+.piece-header-next .personne { text-align: right; font-weight: bold; }
+
+/* ---------- Pied de page ---------- */
+.piece-footer { text-align: center; font-size: 8pt; line-height: 1.4; }
+.piece-footer .republique { font-weight: bold; }
+.piece-footer .devise { font-style: italic; font-family: Georgia, "Times New Roman", serif; color: #444; }
+.piece-footer .page { margin-top: 4px; font-size: 7.5pt; color: #444; }
+
+/* ---------- Aperçu écran : feuille A4 simulée ---------- */
+.a4-sheet {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 16px;
+  padding: 12mm 12mm 10mm;
+  background: #fff;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+.a4-sheet .sheet-body { flex: 1; padding: 8mm 0; font-size: 10pt; }
+.a4-sheet .piece-header-next { margin-bottom: 4mm; }

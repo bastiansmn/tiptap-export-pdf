@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <title th:text="${h.titre}">Pièce</title>
+  <style th:utext="${css}"></style>
+  <style>
+    @page {
+      size: A4;
+      margin: 19mm 12mm 22mm 12mm;
+      /* Cadre noir de la zone de contenu : s'étend jusqu'au pied de page, même si le contenu est court */
+      border: 1px solid black;
+      @top-center { content: element(headerNext); vertical-align: bottom; }
+      @bottom-center { content: element(footer); vertical-align: top; padding-top: 3mm; }
+    }
+    /* Page 1 : l'en-tête cartouche est dans le flux (il porte déjà le trait du haut), pas de rappel en marge */
+    @page :first {
+      margin-top: 12mm;
+      border-top: none;
+      @top-center { content: none; }
+    }
+    body { margin: 0; font-family: Helvetica, Arial, sans-serif; font-size: 10pt; }
+    #running-header-next { position: running(headerNext); }
+    #running-footer { position: running(footer); }
+    .page-num:before { content: counter(page); }
+    .page-total:before { content: counter(pages); }
+    .piece-header-first { margin: 0 -1px; }
+    .content { padding: 4mm; }
+    table { border-collapse: collapse; }
+    .content table td, .content table th { border: 1px solid #888; padding: 3px 5px; }
+  </style>
+</head>
+<body>
+  <!-- Éléments "running" : placés dans les marges de page par @page -->
+  <div id="running-header-next" class="piece-header-next">
+    <table>
+      <tr>
+        <td class="proc">Procédure n° <span th:text="${h.numProcedure}"></span></td>
+        <td class="type"><b th:text="${h.typePiece}"></b><span th:if="${h.sousTypePiece}"> – <span th:text="${h.sousTypePiece}"></span></span></td>
+        <td class="personne" th:text="${h.personne}"></td>
+        <td class="personne" style="width:16%">Page <span class="page-num"></span>/<span class="page-total"></span></td>
+      </tr>
+    </table>
+  </div>
+  <div id="running-footer" class="piece-footer">
+    <div class="republique">République Française</div>
+    <div class="devise">Liberté - Égalité - Fraternité</div>
+    <div class="page">Page <span class="page-num"></span>/<span class="page-total"></span></div>
+  </div>
+
+  <!-- En-tête page 1 -->
+  <div class="piece-header-first">
+    <table>
+      <tr>
+        <td class="cell-service" rowspan="2">
+          <div class="logo">POLICE<small>NATIONALE</small></div>
+          <div class="service-nom" th:text="${h.serviceNom}"></div>
+          <div th:text="${h.serviceAdresse}"></div>
+        </td>
+        <td class="type-piece" th:text="${h.typePiece}"></td>
+      </tr>
+      <tr>
+        <td class="titre" th:text="${h.titre}"></td>
+      </tr>
+    </table>
+    <table class="meta">
+      <tr>
+        <td><span class="label">Procédure n° :</span> <span class="value" th:text="${h.numProcedure}"></span></td>
+        <td><span class="label">IDJ n° :</span> <span class="value" th:text="${h.numIdj}"></span></td>
+        <td><span class="label">Le :</span> <span class="value" th:text="${h.dateHorodatage}"></span></td>
+      </tr>
+    </table>
+    <table class="affaire">
+      <tr><td><span class="label">Affaire contre :</span> <b th:text="${h.affaireContre}"></b></td></tr>
+    </table>
+    <table class="infraction">
+      <tr><td><span class="label">Infraction :</span> <span class="value" th:text="${h.qualification}"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="content" th:utext="${content}"></div>
+</body>
+</html>
